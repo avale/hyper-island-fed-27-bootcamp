@@ -1,24 +1,41 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const $photos = document.querySelector('#photos');
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const getPhotos = async () => {
+  const res = await fetch('https://image-feed-api.vercel.app/api/images');
+  const {data} = await res.json();
+  return data;
+};
 
-setupCounter(document.querySelector('#counter'))
+const resetList = () => {
+  $photos.innerHTML = '';
+};
+
+const createPhoto = (photoData) => {
+  const $wrapper = document.createElement('div');
+  $wrapper.classList.add('image-wrapper');
+  $wrapper.setAttribute('data-id', photoData?.id)
+
+  const $img = document.createElement('img');
+  $img.setAttribute('src', photoData.image_url);
+  $img.classList.add('image');
+  $wrapper.append($img);
+
+  const $likes = document.createElement('div');
+  $likes.classList.add('likes');
+  $likes.innerHTML = `Likes: ${photoData.likes_count}`;
+  $wrapper.append($likes);
+
+  return $wrapper;
+};
+
+const render = async () => {
+  resetList();
+  const photos = await getPhotos();
+
+  photos.forEach((i) => {
+    const $photo = createPhoto(i);
+    $photos.append($photo);
+  });
+};
+
+render();
