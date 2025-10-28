@@ -7,6 +7,7 @@ body {
 
 .container {
   display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -20,10 +21,26 @@ body {
   gap: 2rem;
 }
 
-.image-wrapper {
+.card {
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 0 1rem rgb(from black r g b / 10%);
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.image-wrapper img {
+  cursor: pointer;
+  display: block;
+}
+
+.image-wrapper .overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0 0 0 / 30%);
+  transition: all 0.2s ease-in-out;
 }
 
 .likes {
