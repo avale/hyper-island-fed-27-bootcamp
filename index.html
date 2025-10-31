@@ -6,10 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hypergram</title>
     <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="/src/side-panel.css" />
   </head>
   <body>
     <div class="container">
-      <h1>Hypergram</h1>
+      <aside class="side-panel">
+        <img src="./public/hypergram.png" width="100">
+
+        <nav>
+          <ul>
+            <li class="active">
+              <img src="./public/icon-home.svg" alt="Home" />
+              Home
+            </li>
+            <li>
+              <img src="./public/icon-search.svg" alt="Search" />
+              Search
+            </li>
+            <li>
+              <img src="./public/icon-explore.svg" alt="Explore" />
+              Explore
+            </li>
+            <li>
+              <img src="./public/icon-reels.svg" alt="Reels" />
+              Reels
+            </li>
+            <li>
+              <img src="./public/icon-messages.svg" alt="Messages" />
+              Messages
+            </li>
+            <li>
+              <img src="./public/icon-notifications.svg" alt="Notifications" />
+              Notifications
+            </li>
+            <li>
+              <img src="./public/icon-create.svg" alt="Create" />
+              Create
+            </li>
+            <li>
+              Profile
+            </li>
+          </ul>
+        </nav>
+      </aside>
       <div id="photos" class="photos"></div>
     </div>
     <script type="module" src="/src/main.js"></script>
